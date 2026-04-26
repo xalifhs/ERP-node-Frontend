@@ -1,0 +1,61 @@
+/* full-screen translucent backdrop */
+.um-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* modal box centered via flex parent */
+.um-modal {
+  position: relative;
+  background: #ffffff;
+  border-radius: 8px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 80vh;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* small close button, top-left */
+.um-close {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+/* table wrapper scrolls horizontally */
+.um-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+/* basic table styling */
+.um-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.um-table th,
+.um-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.um-table thead th {
+  background: #f5f5f5;
+  font-weight: bold;
+}

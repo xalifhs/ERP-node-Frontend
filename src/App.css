@@ -1,0 +1,144 @@
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.app-layout {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing);
+}
+
+.sidebar h2 {
+  margin-bottom: var(--spacing);
+  font-size: 1.5rem;
+}
+
+.sidebar nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.6rem 0.4rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 0.4rem;
+  transition: background 0.2s;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  background: var(--primary-dark);
+  color: white;
+}
+
+.logout-btn {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 0.6rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #c93c1a;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background: var(--bg);
+}
+
+.main-content header {
+  background: var(--surface);
+  padding: var(--spacing);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.page-container {
+  padding: var(--spacing);
+  overflow: auto;
+  flex-grow: 1;
+}
+
+button {
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+}
+
+input, select {
+  padding: 0.6rem;
+  border: 1px solid #444;
+  border-radius: var(--border-radius);
+  background-color: var(--surface);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+  }
+  .sidebar nav {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .main-content header {
+    text-align: center;
+  }
+}
