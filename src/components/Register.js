@@ -18,18 +18,19 @@ function Register() {
     }
 
     try {
-      const res = await fetch('http://localhost:8080/api/auth/register', {
+      const res = await fetch('http://localhost:3001/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password, type }),
       });
-
+      const errJson = await res.json();
       if (!res.ok) {
-        const errText = await res.text();
-        throw new Error(errText || 'Registration failed');
+        //const errText = await res.text();
+        //throw new Error(errText || 'Registration failed');
+        throw new Error(errJson.message || 'Registration failed');
       }
 
-      await res.json();
+      //await res.json();
       setError(false);
       setMessage('✅ Registration successful! You can now log in.');
       setName('');
