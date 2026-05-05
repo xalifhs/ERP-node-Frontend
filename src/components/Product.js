@@ -20,12 +20,10 @@ function Product() {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
-        console.log("STATUS:", res.status);
         if (!res.ok) throw new Error("Failed to fetch products");
         return res.json();
       })
       .then((data) => {
-        console.log("DATA:", data);
         setProducts(data);
         setShowProducts(true);
       })

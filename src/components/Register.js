@@ -9,6 +9,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
+  const [companyId, setCompanyId] = useState('');
 
   const handleRegister = async () => {
     if (!name || !email || !password) {
@@ -21,16 +22,15 @@ function Register() {
       const res = await fetch('http://localhost:3001/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, type }),
+        body: JSON.stringify({ name, email, password, type, companyId }),
       });
-      const errJson = await res.json();
+
       if (!res.ok) {
-        //const errText = await res.text();
-        //throw new Error(errText || 'Registration failed');
-        throw new Error(errJson.message || 'Registration failed');
+        const errText = await res.text();
+        throw new Error(errText || 'Registration failed');
       }
 
-      //await res.json();
+      await res.json();
       setError(false);
       setMessage('✅ Registration successful! You can now log in.');
       setName('');
@@ -92,6 +92,13 @@ function Register() {
           value={password}
           onChange={handleInputChange(setPassword)}
           required
+        />
+        <input
+          type="number"
+          className="styled-input"
+          placeholder="Company ID"
+          value={companyId}
+          onChange={handleInputChange(setCompanyId)}
         />
 
 

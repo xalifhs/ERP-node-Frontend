@@ -37,7 +37,7 @@ function Orders() {
   useEffect(() => {
     if (!token) return;
 
-    fetch("http://localhost:8080/api/products", {
+    fetch("http://localhost:3001/api/products", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => {
@@ -78,7 +78,7 @@ function Orders() {
       return alert("Please select product and valid amount for each row.");
     }
 
-    fetch("http://localhost:8080/api/orders/place", {
+    fetch("http://localhost:3001/api/orders/place", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function Orders() {
   const fetchOrders = () => {
     if (!token) return alert("Not authenticated");
 
-    fetch("http://localhost:8080/api/orders", {
+    fetch("http://localhost:3001/api/orders", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(r => {
@@ -192,10 +192,10 @@ function Orders() {
                   <td>{o.id}</td>
                   <td>{o.date}</td>
                   <td>{o.status}</td>
-                  <td>€{o.totalPrice}</td>
+                  <td>€{o.total_price}</td>
                   <td>
                     <ul>
-                      {o.orderItems.map(i => (
+                      {o.items && o.items.map(i => (
                         <li key={i.id}>
                           {i.product?.name || "Unknown product"} x {i.amount}
                         </li>

@@ -23,22 +23,51 @@ function Dashboard() {
     setName(userName);
     setEmail(userEmail);
 
-    fetch("http://localhost:3001/api/test", {
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log("Protected data:", data);
-      })
-      .catch(err => console.error(err));
-
   }, [navigate]);
 
   const handleLogout = () => {
     localStorage.clear();
     navigate('/');
+  };
+  const placeOrder = async () => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Not logged in");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3001/api/orders/place", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        items: [
+          {
+            product: { id: 1 },
+            amount: 2,
+          },
+        ],
+      }),
+    });
+
+    console.log("STATUS:", res.status);
+
+    const data = await res.json();
+    console.log("RESPONSE:", data);
+
+    if (!res.ok) {
+      throw new Error(data.message || "Order failed");
+    }
+
+    alert("Order placed successfully!");
+  } catch (err) {
+    console.error(err);
+    alert("Error placing order: " + err.message);
+    }
   };
 
   return (
@@ -49,6 +78,8 @@ function Dashboard() {
       </div>
     </div>
   );
+
+  
 }
 
 export default Dashboard;
