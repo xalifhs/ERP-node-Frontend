@@ -119,7 +119,7 @@ function Orders() {
       <h2>Orders</h2>
 
       {/* Place Order button only for user type 'user' */}
-      {userType === "user" && (
+      {userType === "user" &&  (
         <button type="button" onClick={openPlaceModal} disabled={products.length === 0}>
           Place Order
         </button>
